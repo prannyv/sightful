@@ -4,7 +4,7 @@
     "manifest_version":3,
     "description": "an extension to convert currencies quickly",
     "action":{
-        "default_icon": "assets/icon.png",
+        "default_icon": "assets/star.png",
         "default_popup": "index.html"
     }
 }

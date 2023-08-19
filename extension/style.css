@@ -1,6 +1,6 @@
 body{
-    width: 400px;
-    height: 800px;
+    width: 700px;
+    height: 550px;
     background-color: white;
     border-radius: 100px;
 }
@@ -13,44 +13,157 @@ body{
     margin-top: 30px;
 }
 
-.primary-tabs{
-    margin-block-start: 24px;
-    margin-inline: 16px;
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    justify-content: center;
+/* tabs */
+.tabset > input[type="radio"] {
     position: absolute;
-    left: 15%;
-    bottom: 20px;
-    gap: 50px;
+    left: -200vw;
+}
+  
+.tabset .tab-panel {
+display: none;
+}
+  
+/* tab changing functionality */
+.tabset > input:first-child:checked ~ .tab-panels > .tab-panel:first-child,
+.tabset > input:nth-child(3):checked ~ .tab-panels > .tab-panel:nth-child(2),
+.tabset > input:nth-child(5):checked ~ .tab-panels > .tab-panel:nth-child(3),
+.tabset > input:nth-child(7):checked ~ .tab-panels > .tab-panel:nth-child(4),
+.tabset > input:nth-child(9):checked ~ .tab-panels > .tab-panel:nth-child(5),
+.tabset > input:nth-child(11):checked ~ .tab-panels > .tab-panel:nth-child(6) {
+    display: block;  
+    line-height: 40px;}
 
+body {
+    font: 16px/1.5em "Overpass", "Open Sans", Helvetica, sans-serif;
+    color: #ffffff;
+    font-weight: 300;
+    width: 380px;
+    /* margin:auto; */
+    background-image: linear-gradient(to bottom right, rgb(255, 255, 255), rgb(255, 240, 253),rgb(218, 211, 255));
 }
 
-.tab-btn{
-    height: 48px;
-    width: 100%;
-    display: grid;
-    place-content: center;
-    background-color: transparent;
-    border-width: 0px;
-    border-radius: 15px;
+/* tab icons */
+.tabset > label {
+    position: relative;
+    display: inline-block;
+    /* padding: 10px 10px 20px; */
+    /* border: 1px solid transparent;
+    border-bottom: 0; */
+    cursor: pointer;
+    font-weight: 600;
+    margin-left: 60px;
+    margin-top: 10px;
+
+    /* position: absolute;
+    bottom: 0px;
+    padding: 10px;
+    gap: 50px; */
+    
+}
+  
+/* .tabset > label::after {
+    content: "";
+    position: absolute;
+    left: 15px;
+    bottom: 10px;
+    width: 22px;
+    height: 4px;
+    background: #8d8d8d;
+} */
+  
+/* input:focus-visible + label {
+    outline: 2px solid rgba(0,102,204,1);
+    border-radius: 3px;
+} */
+  
+/* .tabset > label:hover,
+.tabset > input:focus + label,
+.tabset > input:checked + label {
+    color: #06c;} */
+
+.tabset > label:hover::after,
+.tabset > input:focus + label::after,
+.tabset > input:checked + label::after {
+    background: rgb(0, 0, 0);
+    
+}
+  
+.tabset > input:checked + label {
+    border-color: #ccc;
+    /* border-bottom: 1px solid #fff; */
+    margin-bottom: -1px;
 }
 
-.tab-btn:hover{
-    transform: scale(1.2);
+.tab-panel {
+    /* padding: 30px 0; */
+    /* border-top: 1px solid #ccc; */
+    margin-left: 50px;
 }
-
-.tab-btn.active{
+  
+/*
+   Demo purposes only
+*/
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+  }
+  
+body {
+    /* padding: 30px; */
+}
+  
+.tabset {
+    max-width: 380px;
     
 }
 
-.rectangle{
-    height: 60px;
-    width: 300px;
-    background-color: #555;
-    position: absolute;
-    opacity: 50%;
-    border-radius: 50px;
-    left: 1%;
-    bottom: 5px;
+/* .home{
+    margin-left: 25px;
 }
+
+.details{
+    margin-left: 300px;
+}
+
+.settings{
+    margin-left: 110px;
+} */
+
+.home:hover{
+    transform: scale(1.1);
+}
+
+.details:hover{
+    transform: scale(1.1);
+}
+
+.settings:hover{
+    transform: scale(1.1);
+}
+
+
+/* checkbox styling */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 5px;
+    margin-bottom: 12px;
+  }
+
+.checkbox{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 25px;
+  background-color: #eee;
+
+}
+
+
+
+
+
+
+

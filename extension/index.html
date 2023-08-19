@@ -5,14 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title> sightful </title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500&family=Open+Sans:wght@400;500&display=swap"
-    rel="stylesheet">
-
-
-
 </head>
 
 <body>
@@ -21,36 +13,102 @@
         <img src="assets/Group 1.png" alt="logo" class="logo">
     </div>
     
-    <!-- tabs -->
-    <div class="primary-tabs">
+    <!-- tab sections functionality (the tab icons) -->
+    <div class="tabset">
+        <!-- Tab 1 -->
+        <input type="radio" name="tabset" id="tab1" aria-controls="home" checked>
+        <label for="tab1">
+            <img src="assets/home_FILL1_wght700_GRAD0_opsz40.svg" alt="home" class="home">
+        </label>
         
-        <!-- tab1 -->
-        <button class="tab-btn active" data-tab-btn="one">
-            <span class="tab-text title-small">
-                <img src="assets/home_FILL1_wght700_GRAD0_opsz40.svg" alt="home" class="home">
-            </span>
-            <div class="state-layer"></div>
-        </button>
+        <!-- Tab 2 -->
+        <input type="radio" name="tabset" id="tab2" aria-controls="details">
+        <label for="tab2">
+            <img src="assets/more_horiz_FILL1_wght700_GRAD0_opsz40.svg" alt="details" class="details">
+        </label>
+        
+        <!-- Tab 3 -->
+        <input type="radio" name="tabset" id="tab3" aria-controls="settings">
+        <label for="tab3">
+            <img src="assets/settings_FILL1_wght700_GRAD0_opsz40.svg" alt="settings" class="settings">
+        </label>
+        
 
-        <!-- tab2 -->
-        <button class="tab-btn active" data-tab-btn="two">
-            <span class="tab-text title-small">
-                <img src="assets/more_horiz_FILL1_wght700_GRAD0_opsz40.svg" alt="details" class="details">
-            </span>
-            <div class="state-layer"></div>
-        </button>
 
-        <!-- tab3 -->
-        <button class="tab-btn active" data-tab-btn="three">
-            <span class="tab-text title-small">
-                <img src="assets/settings_FILL1_wght700_GRAD0_opsz40.svg" alt="settings" class="settings">
-            </span>
-            <div class="state-layer"></div>
-        </button>
+        <!-- line break -->
+        <hr>
 
-        <div class="rectangle"></div>
 
-    </div>
+
+        <!-- content for tabs -->
+        <div class="tab-panels">
+          <!-- home tab -->
+            <section id="home" class="tab-panel">
+            <h2><span style = "background-color:#000000">catergory:</span><br>
+                <span style = "background-color:#000000">rating:</span><br>
+                <span style = "background-color:#000000">potential triggers:</span>
+            </h2>
+          </section>
+          
+          <!-- details tabs -->
+            <section id="details" class="tab-panel">
+            <h2>details</h2>
+          </section>
+          
+          <!-- settings tab -->
+            <section id="settings" class="tab-panel">
+
+                <!-- checkboxes -->
+                <label for="checkbox1" class="container">
+                    <input type="checkbox" id="checkbox1">
+                    Checkbox 1
+                </label>
+                <br>
+
+                <label for="checkbox2" class="container">
+                    <input type="checkbox" id="checkbox2">
+                    Checkbox 2
+
+                </label>
+                <br>
+
+                <label for="checkbox3" class="container">
+                    <input type="checkbox" id="checkbox3">
+                    Checkbox 3
+                </label>
+                <br>
+
+                <!-- textfield -->
+                <input type="text" id="text-input">
+                <button id="append-button">Append</button>
+                <p id="appended-text"></p>
+
+
+
+            </section>
+           
+               
+
+
+
+        </div>
+
+        
+
+
+        
+        
+      </div>
+
+
+
+
+
+
+
+
+
+
 
 
 
