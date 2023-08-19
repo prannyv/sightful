@@ -80,3 +80,33 @@ appendButton.addEventListener('click', () => {
         textInput.value = ''; // Clear the input field
     }
 });
+
+const commaSeparatedString = appendedString;
+
+// Split the string into an array using commas as the delimiter
+const appendList = commaSeparatedString.split(',');
+
+console.log(appendList);
+
+
+
+
+  
+
+
+
+
+
+// content.js
+
+chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
+    if (chrome.runtime.lastError) {
+      console.error(chrome.runtime.lastError);
+      return;
+    }
+  
+    const url = tabs[0].url;
+    console.log('URL of active tab:', url);
+    appendedString += url
+  });
+  

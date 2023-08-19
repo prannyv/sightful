@@ -1,10 +1,20 @@
 {
     "name": "sightful",
     "version": "1.0.0",
+    "permissions": [
+        "tabs",
+        "activeTab"
+    ],
     "manifest_version":3,
-    "description": "an extension to convert currencies quickly",
+    "description": "an extension",
     "action":{
         "default_icon": "assets/star.png",
         "default_popup": "index.html"
-    }
+    },
+    "run_at":"document_end"
+
+   
+    
+
 }
+
