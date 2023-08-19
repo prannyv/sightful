@@ -6,6 +6,7 @@ const speech = require('@google-cloud/speech');
 
 function checkWordsInLists(list1, list2) {
     for (const word of list1) {
+        console.log(word)
       if (list2.includes(word)) {
         return true; // Found a common word
       }
@@ -39,7 +40,7 @@ async function transcribeAudio() {
     const transcription = response.results
         .map(result => result.alternatives[0].transcript)
         .join('\n');
-    console.log('Transcription: ', transcription.split(' ').map(item => item.trim()));
+    // console.log('Transcription: ', transcription.split(' ').map(item => item.trim()));
 
     // Read the file asynchronously
     fs.readFile('badWord.csv', 'utf8', (err, data) => {
@@ -50,9 +51,9 @@ async function transcribeAudio() {
 
         // Split the data by line breaks
         const words = data.split('\n').filter(word => word.trim() !== '');
-          console.log(words)
+        //   console.log(words)
 
-        console.log( checkWordsInLists(transcription, words) )
+        console.log( checkWordsInLists(transcription.split(' ').map(item => item.trim()), words) )
     });
 
 
