@@ -1,0 +1,56 @@
+body{
+    width: 400px;
+    height: 800px;
+    background-color: white;
+    border-radius: 100px;
+}
+
+.logo{
+    width: 250px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+
+.primary-tabs{
+    margin-block-start: 24px;
+    margin-inline: 16px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    justify-content: center;
+    position: absolute;
+    left: 15%;
+    bottom: 20px;
+    gap: 50px;
+
+}
+
+.tab-btn{
+    height: 48px;
+    width: 100%;
+    display: grid;
+    place-content: center;
+    background-color: transparent;
+    border-width: 0px;
+    border-radius: 15px;
+}
+
+.tab-btn:hover{
+    transform: scale(1.2);
+}
+
+.tab-btn.active{
+    
+}
+
+.rectangle{
+    height: 60px;
+    width: 300px;
+    background-color: #555;
+    position: absolute;
+    opacity: 50%;
+    border-radius: 50px;
+    left: 1%;
+    bottom: 5px;
+}
