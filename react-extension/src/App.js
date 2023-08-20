@@ -7,6 +7,21 @@ import Detail from './tabs/Detail';
 import Setting from './tabs/Setting';
 
 function App() {
+  const [currWord, setCurrWord] = useState('');
+  const [ wordList, setWordList ] = useState([]);
+  const [checkboxes, setCheckboxes] = useState({
+    checkbox1: false,
+    checkbox2: false,
+  });
+
+  const handleCheckboxChange = (event) => {
+    const { name, checked } = event.target;
+    setCheckboxes(prevCheckboxes => ({
+      ...prevCheckboxes,
+      [name]: checked
+    }));
+  };
+
   const [ currTab, setCurrTab ] = useState(1); 
 
   return (
@@ -14,7 +29,7 @@ function App() {
       <Header/>
       {currTab === 1 && <Overview/>}
       {currTab === 2 && <Detail/>}
-      {currTab === 3 && <Setting/>}
+      {currTab === 3 && <Setting currWord={currWord} setCurrWord={setCurrWord} wordList={wordList} setWordList={setWordList} checkboxes={checkboxes} handleCheckboxChange={handleCheckboxChange}/>}
       <NavBar currTab={currTab} setCurrTab={setCurrTab}/>
     
     </ExtensionContainer>
