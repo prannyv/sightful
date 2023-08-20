@@ -1,16 +1,43 @@
-import React from 'react'
-import styled from '@emotion/styled'
+import React, { useState, useEffect } from "react";
+import styled from "@emotion/styled";
+import axios from "axios";
 
 const Analysis = () => {
+  const [url, setUrl] = useState("");
+  const [responseMessage, setResponseMessage] = useState("");
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    fetch("http://localhost:8000/message")
+      .then((res) => res.json())
+      .then((data) => setMessage(data.message));
+  }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post("http://localhost:3001/process-url", {
+        url,
+      });
+
+      setResponseMessage(response.data.message);
+    } catch (error) {
+      console.error("Error:", error);
+      setResponseMessage("Error processing the URL");
+    }
+  };
+
   return (
     <AnalysisContainer>
+      <h2>{message}</h2>
       <h1>Video Analysis for “Stanley&rsquo;s Mukbang” </h1>
-      <TopRow color='red'>
-        <div className='category'>
+      <TopRow color="red">
+        <div className="category">
           <h2>Category</h2>
           <Triggered>Food, Comedy</Triggered>
         </div>
-        <div className='review'>
+        <div className="review">
           <div>
             <h2>Rating</h2>
             <p>52%</p>
@@ -44,13 +71,13 @@ const Analysis = () => {
         </TriggerTable>
       </BottomRow>
     </AnalysisContainer>
-  )
-}
+  );
+};
 
 const AnalysisContainer = styled.div`
   width: 100vw;
   padding-bottom: 50px;
-  background-color: #F9F8F8;
+  background-color: #f9f8f8;
   display: flex;
   flex-direction: column;
   > h1 {
@@ -61,9 +88,8 @@ const AnalysisContainer = styled.div`
     align-self: center;
     margin-top: 50px;
     margin-bottom: 20px;
-
   }
-`
+`;
 
 const TopRow = styled.div`
   width: 1370px;
@@ -100,17 +126,16 @@ const TopRow = styled.div`
       > p {
         font-weight: 500;
         font-size: 22px;
-        color: ${props => props.color};
+        color: ${(props) => props.color};
         transition: opacity 300ms;
         opacity: 1;
         &.transition {
           opacity: 0;
         }
       }
-
     }
   }
-`
+`;
 
 const TriggerTable = styled.table`
   padding-right: 50px;
@@ -123,15 +148,15 @@ const TriggerTable = styled.table`
     background-size: 100%;
     -webkit-background-clip: text;
     -moz-background-clip: text;
-    -webkit-text-fill-color: transparent; 
+    -webkit-text-fill-color: transparent;
     -moz-text-fill-color: transparent;
     :first-of-type {
       text-align: left;
-      background-image: linear-gradient(to bottom right, #FCA27C, #FF5AB4);
+      background-image: linear-gradient(to bottom right, #fca27c, #ff5ab4);
     }
     :nth-of-type(2) {
       text-align: right;
-      background-image: linear-gradient(to bottom right, #FCA27C, #FF5AB4);
+      background-image: linear-gradient(to bottom right, #fca27c, #ff5ab4);
     }
   }
   > tbody > tr > td {
@@ -145,8 +170,7 @@ const TriggerTable = styled.table`
       text-align: right;
     }
   }
-
-`
+`;
 
 const BottomRow = styled.div`
   width: 1370px;
@@ -164,10 +188,10 @@ const BottomRow = styled.div`
     color: black;
     padding-left: 50px;
   }
-`
+`;
 
 const Triggered = styled.p`
-  background-image: linear-gradient(to bottom right, #FCA27C, #FF5AB4);
+  background-image: linear-gradient(to bottom right, #fca27c, #ff5ab4);
   font-family: Helvetica Now;
   font-weight: 600;
   font-size: 30px;
@@ -177,7 +201,7 @@ const Triggered = styled.p`
   background-size: 100%;
   -webkit-background-clip: text;
   -moz-background-clip: text;
-  -webkit-text-fill-color: transparent; 
+  -webkit-text-fill-color: transparent;
   -moz-text-fill-color: transparent;
   align-self: center;
   transition: opacity 300ms;
@@ -185,6 +209,6 @@ const Triggered = styled.p`
   &.transition {
     opacity: 0;
   }
-`
+`;
 
-export default Analysis
+export default Analysis;
