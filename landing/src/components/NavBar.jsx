@@ -2,15 +2,17 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { Link } from 'react-router-dom'
 import { ReactComponent as Star } from '../res/star.svg';
+import { useLocation } from 'react-router-dom';
 
 const NavBar = () => {
+  const location = useLocation();
   return (
     <NavContainer>
       <LeftBarContainer>
         <LeftBar>
           <p>Sightful</p>
         </LeftBar>
-        <svg class="flt_svg" xmlns="http://www.w3.org/2000/svg">
+        <svg class="flt_svg" xmlns="http://www.w3.org/2000/svg" className='hide'>
           <defs>
               <filter id="flt_tag">
                   <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />    
@@ -23,20 +25,25 @@ const NavBar = () => {
       
       <RightBarContainer>
         <RightBar>
-          <p>
-            <Star className='star'/>
-            Landing
-          </p>
-          <p>
-            <Star className='star'/>
-            Demo
-          </p>
+          <Link to='/' className='link'>
+            <p>
+              <Star className={location.pathname === '/' ? 'star active' : 'star'}/>
+              Landing
+            </p>
+          </Link>
+
+          <Link to='/demo' className='link'>
+            <p>
+              <Star className={location.pathname === '/demo' ? 'star active' : 'star'}/>
+              Demo
+            </p>
+          </Link>
           <p>
             <Star className='star'/>
             Download
           </p>
         </RightBar>
-        <svg class="flt_svg" xmlns="http://www.w3.org/2000/svg">
+        <svg class="flt_svg" xmlns="http://www.w3.org/2000/svg" className='hide'>
           <defs>
               <filter id="flt_tag">
                   <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />    
@@ -59,6 +66,9 @@ const NavContainer = styled.div`
   margin-top: 50px;
   width: 100vw;
   z-index: 9999;
+  .hide {
+    display: none;
+  }
 `
 
 const LeftBarContainer = styled.div`
@@ -74,7 +84,7 @@ const LeftBar = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  > p {
+  p {
     color: white;
     font-family: Helvetica Now;
     font-size: 21px;
@@ -97,12 +107,15 @@ const RightBar = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-
-  > p {
+  .link {
+    text-decoration: none;
+  }
+  p {
     font-family: Helvetica Now;
     font-weight: 500;
     font-style: italic;
     font-size: 18px;
+    color: black;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -118,6 +131,9 @@ const RightBar = styled.div`
         transition: fill 0.5s ease;
         fill: black;
       }
+    }
+    .active {
+      fill: black;
     }
   }
 
