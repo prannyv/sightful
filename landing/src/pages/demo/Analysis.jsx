@@ -61,7 +61,6 @@ const AnalysisContainer = styled.div`
     align-self: center;
     margin-top: 50px;
     margin-bottom: 20px;
-
   }
 `
 
