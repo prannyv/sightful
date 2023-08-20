@@ -1,6 +1,6 @@
 @font-face {
     font-family: myFirstFont;
-    src: url(assets/fonts/Helvetica-BoldOblique.ttf);
+    src: url(assets/fonts/HelveticaNowDisplay-Bold.otf);
 }
 
 body{
@@ -47,7 +47,7 @@ body {
     font-weight: 50;
     width: 380px;
     /* margin:auto; */
-    background-image: linear-gradient(to bottom right, rgb(255, 255, 255), rgb(255, 240, 253),rgb(218, 211, 255));
+    background-image: linear-gradient(to bottom right, rgb(210, 163, 202), rgb(155, 182, 214),rgb(231, 212, 164));
 }
 
 /* tab icons */
@@ -159,7 +159,160 @@ body {
 
 
 
+.category{
+    position: absolute;
+    background-color: white;
+    width: 310px;
+    height: 80px;
+    opacity: 60%;
+    left: 39px;
+    top: 210px;
+    border-radius: 10px;
+}
 
+.ratings{
+    position: absolute;
+    background-color: white;
+    width: 310px;
+    height: 100px;
+    opacity: 60%;
+    left: 39px;
+    top: 305px;
+    border-radius: 10px;
+}
+
+.triggers{
+    position: absolute;
+    background-color: white;
+    width: 310px;
+    height: 140px;
+    opacity: 60%;
+    left: 39px;
+    top: 422px;
+    border-radius: 10px;
+}
+
+.subheadingc{
+    position: absolute;
+    left: 18px;
+    top: 10px;
+}
+
+.headingc{
+    position: absolute;
+    left: 18px;
+    top: 30px;
+    color: rgb(255, 122, 144);
+    font-size: 150%;
+}
+
+.subheadingr{
+    position: absolute;
+    left: 18px;
+    top: 7px;
+}
+
+.headingr{
+    position: absolute;
+    left: 18px;
+    top: 33px;
+    color: rgb(255, 122, 144);
+    font-size: 130%;
+    line-height: 25px;
+}
+
+.score{
+    position: absolute;
+    left: 243px;
+    top: 7px;
+    color: rgb(144, 144, 42);
+
+
+}
+
+.videotitle{
+    position: absolute;
+    left: 43px;
+
+
+}
+
+.subheadingt{
+    position: absolute;
+    left: 18px;
+    top: 7px;
+}
+
+.headingt1{
+    position: absolute;
+    left: 18px;
+    top: 35px;
+    color: rgb(255, 122, 144);
+    font-size: 130%;
+    line-height: 28px;
+}
+
+
+.cover1{
+    position: absolute;
+    left: 18px;
+    top: 39px;
+    width: 250px;
+    height: 20px;
+    background-color: #000000;
+    
+}
+
+.cover1:hover{
+    opacity: 20%;
+}
+
+
+.headingt2{
+    position: absolute;
+    left: 18px;
+    top: 60px;
+    color: rgb(255, 122, 144);
+    font-size: 130%;
+    line-height: 28px;
+}
+
+.cover2{
+    position: absolute;
+    left: 18px;
+    top: 65px;
+    width: 250px;
+    height: 20px;
+    background-color: #000000;
+    
+}
+
+.cover2:hover{
+    opacity: 20%;
+}
+
+.headingt3{
+    position: absolute;
+    left: 18px;
+    top: 85px;
+    color: rgb(255, 122, 144);
+    font-size: 130%;
+    line-height: 28px;
+}
+
+.cover3{
+    position: absolute;
+    left: 18px;
+    top: 90px;
+    width: 250px;
+    height: 20px;
+    background-color: #000000;
+    
+}
+
+.cover3:hover{
+    opacity: 20%;
+}
 
 
 
@@ -183,7 +336,7 @@ body {
     height: 25px;
     width: 25px;
     background-color: rgb(215, 204, 227);
-    border-radius: 8px;
+    border-radius: 2px;
 }
 
 .checktext1{
@@ -191,6 +344,7 @@ body {
     color: black;
     top: 174px;
     left: 110px;
+    
 }
 
 .checkmark2 {
@@ -200,7 +354,7 @@ body {
     height: 25px;
     width: 25px;
     background-color: rgb(215, 204, 227);
-    border-radius: 8px;
+    border-radius: 2px;
 }
 
 .checkmark3 {
@@ -210,7 +364,7 @@ body {
     height: 25px;
     width: 25px;
     background-color: rgb(215, 204, 227);
-    border-radius: 8px;
+    border-radius: 2px;
 }
 
 
