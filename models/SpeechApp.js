@@ -1,59 +1,82 @@
-// Imports the Google Cloud client library
+// Imports dependencies
 const fs = require("fs");
 const ytdl = require("ytdl-core");
 const ffmpeg = require("fluent-ffmpeg");
 const speech = require("@google-cloud/speech");
 
-const videoURL = "https://www.youtube.com/shorts/Zz0zgy0TNTg"; // Replace with the YouTube video URL
-const outputVideoPath = "video.mp4"; // The path to save the downloaded video
+const outputVideoPath = "video.mp4"; // Path to save the downloaded video
 const outputAudioPath = "audio.mp3"; // Path to save the audio
 
-async function downloadVideo() {
+// Read the curse word file and place the words into list
+var curseWords = [];
+fs.readFile("curseWords.csv", "utf8", (err, data) => {
+  if (err) {
+    console.error("Error reading file:", err);
+    return;
+  }
+
+  // Split the data by line breaks
+  curseWords = data.split("\n").filter((word) => word.trim() !== "");
+});
+
+//Read the hateword file and place the words into list
+var hateWords = [];
+fs.readFile("hateWords.csv", "utf8", (err, data) => {
+  if (err) {
+    console.error("Error reading file:", err);
+    return;
+  }
+
+  // Split the data by line breaks
+  hateWords = data.split("\n").filter((word) => word.trim() !== "");
+});
+
+// download video into mp4 format from youtube url
+async function downloadVideo(videoURL, badWordSet, hateCheck, curseCheck) {
   try {
     const videoInfo = await ytdl.getInfo(videoURL);
     const videoStream = ytdl(videoURL, { quality: "highestaudio" });
 
-    videoStream.pipe(fs.createWriteStream(outputVideoPath));
+    return new Promise((resolve, reject) => {
+      videoStream.pipe(fs.createWriteStream(outputVideoPath));
 
-    videoStream.on("end", () => {
-      console.log("Video downloaded successfully.");
-      convertVideoToAudio();
+      videoStream.on("end", () => {
+        console.log("Video downloaded successfully.");
+        resolve(convertVideoToAudio(badWordSet, hateCheck, curseCheck));
+      });
     });
   } catch (error) {
     console.error("Error downloading video:", error);
   }
 }
 
-function convertVideoToAudio() {
-  ffmpeg()
-    .input(outputVideoPath)
-    .output(outputAudioPath)
-    .on("end", () => {
-      console.log("Video converted to audio successfully.");
-      transcribeAudio();
-    })
-    .on("error", (error) => {
-      console.error("Error converting video to audio:", error);
-    })
-    .run();
+// convert mp4 video file to mp3 audio file
+async function convertVideoToAudio(badWordSet, hateCheck, curseCheck) {
+  return new Promise((resolve, reject) => {
+    ffmpeg()
+      .input(outputVideoPath)
+      .output(outputAudioPath)
+      .on("end", () => {
+        console.log("Video converted to audio successfully.");
+        return transcribeAudio(badWordSet, hateCheck, curseCheck);
+      })
+      .on("error", (error) => {
+        console.error("Error converting video to audio:", error);
+      })
+      .run();
+  });
 }
 
-// Creates a client
+// transcribe mp3 audio file and performs checks
+async function transcribeAudio(badWordSet, hateCheck, curseCheck) {
+  // return final list of bad words that were flagged
+  var finalList = [];
 
-function checkWordsInLists(list1, list2) {
-  for (const word of list1) {
-    console.log(word);
-    if (list2.includes(word)) {
-      return true; // Found a common word
-    }
-  }
-  return false; // No common words found
-}
-
-async function transcribeAudio() {
+  // configure and use Google Cloud Speech-to-Text
   const client = new speech.SpeechClient();
 
   const config = {
+    enableWordTimeOffsets: true,
     encoding: "MP3",
     sampleRateHertz: 16000,
     languageCode: "en",
@@ -63,39 +86,53 @@ async function transcribeAudio() {
     content: fs.readFileSync(outputAudioPath).toString("base64"),
   };
 
-  // var audioFile = speech.RecognitionAudio(audio.content)
-
   const request = {
     config: config,
     audio: audio,
   };
 
   const [response] = await client.recognize(request);
-  const transcription = response.results
-    .map((result) => result.alternatives[0].transcript)
-    .join("\n");
-  // console.log('Transcription: ', transcription.split(' ').map(item => item.trim()));
 
-  // Read the file asynchronously
-  fs.readFile("badWord.csv", "utf8", (err, data) => {
-    if (err) {
-      console.error("Error reading file:", err);
-      return;
-    }
+  // Get
+  response.results.forEach((result) => {
+    console.log(`Transcription: ${result.alternatives[0].transcript}`);
+    result.alternatives[0].words.forEach((wordInfo) => {
+      const startSecs =
+        `${wordInfo.startTime.seconds}` +
+        "." +
+        wordInfo.startTime.nanos / 100000000;
 
-    // Split the data by line breaks
-    const words = data.split("\n").filter((word) => word.trim() !== "");
-    // console.log(words)
-
-    console.log(
-      checkWordsInLists(
-        transcription.split(" ").map((item) => item.trim()),
-        words
-      )
-    );
+      //check for hateful words if that is enabled
+      if (hateCheck && hateWords.includes(`${wordInfo.word}`)) {
+        finalList.push([`${wordInfo.word}`, startSecs]);
+      }
+      //check for bad words if that is enabled
+      if (curseCheck && curseWords.includes(`${wordInfo.word}`)) {
+        finalList.push([`${wordInfo.word}`, startSecs]);
+      }
+      //check for selected flags if list is not empty!
+      if (badWordSet && badWordSet.includes(`${wordInfo.word}`)) {
+        finalList.push([`${wordInfo.word}`, startSecs]);
+      }
+    });
   });
 
-  return transcription;
+  // output successful transcription
+  console.log("Transcription Successful");
+
+  return finalList;
 }
 
-downloadVideo();
+// run file
+// downloadVideo(
+//   "https://www.youtube.com/shorts/ZGHwlOb82PQ",
+//   ["truck"],
+//   true,
+//   true
+// )
+//   .then((finalList) => {
+//     console.log("Final List:", finalList);
+//   })
+//   .catch((error) => {
+//     console.error("Error:", error);
+//   });
