@@ -85,7 +85,6 @@ const commaSeparatedString = appendedString;
 
 // Split the string into an array using commas as the delimiter
 const appendList = commaSeparatedString.split(',');
-
 console.log(appendList);
 
 
