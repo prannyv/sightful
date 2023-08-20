@@ -6,6 +6,7 @@ import SwitchTabs from './SwitchTabs'
 import Setting from './Setting'
 
 const Demo = () => {
+  const [url, setUrl] = useState('');
   const [tab, setTab] = useState(1);
   const [currWord, setCurrWord] = useState('');
   const [ wordList, setWordList ] = useState([]);
@@ -24,7 +25,7 @@ const Demo = () => {
 
   return (
     <DemoContainer>
-      <DemoHeader/>
+      <DemoHeader url={url} setUrl={setUrl}/>
       <SwitchTabs setTab={setTab}/>
       {tab === 1 ? <Analysis /> : <Setting currWord={currWord} setCurrWord={setCurrWord} wordList={wordList} setWordList={setWordList} checkboxes={checkboxes} handleCheckboxChange={handleCheckboxChange}/> }
     </DemoContainer>

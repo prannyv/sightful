@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import gradient from '../../res/gradient.mp4'
 
-const DemoHeader = () => {
-  const [url, setUrl] = useState('');
+const DemoHeader = ({ url, setUrl}) => {
+  
   const [formError, setFormError] = useState('');
 
   const handleSubmit = (event) => {
