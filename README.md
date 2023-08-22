@@ -1,5 +1,5 @@
-# sightful: protect your mind
-sightful is an accessibility Chrome extension that analyzes videos for triggering & negative content. Have more intentionality with how you watch your everyday content:
+<img width="1512" alt="Screen Shot 2023-08-22 at 2 38 22 PM" src="https://github.com/prannyv/sightful/assets/97569011/4ad7dda5-b28c-4807-9208-f5a30551ca60"># Sightful: Protect Your Mind
+Sightful is an accessibility Chrome extension that analyzes videos for triggering & negative content. Have more intentionality with how you watch your everyday content:
 
 1. Add custom trigger words & automatically skip over them in videos.
 2. Make informed decisions with video ratings.
@@ -7,7 +7,7 @@ sightful is an accessibility Chrome extension that analyzes videos for triggerin
 
 Created by Daniel Zhang, Pranav Varma, Stanley Lin, Bryant Zheng @HT6
 
-**cool desktop demo picture
+<img width="1512" alt="Screen Shot 2023-08-22 at 2 38 22 PM" src="https://github.com/prannyv/sightful/assets/97569011/7358a34c-30ad-416b-a8b1-cb5773d6388c">
 
 ## Our Tech Stack
 ![React Native](https://img.shields.io/badge/react_native-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
