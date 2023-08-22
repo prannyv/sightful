@@ -1,4 +1,4 @@
-<img width="1512" alt="Screen Shot 2023-08-22 at 2 38 22 PM" src="https://github.com/prannyv/sightful/assets/97569011/4ad7dda5-b28c-4807-9208-f5a30551ca60"># Sightful: Protect Your Mind
+# Sightful: Protect Your Mind
 Sightful is an accessibility Chrome extension that analyzes videos for triggering & negative content. Have more intentionality with how you watch your everyday content:
 
 1. Add custom trigger words & automatically skip over them in videos.
